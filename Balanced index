@@ -1,0 +1,24 @@
+//  link :  https://leetcode.com/problems/find-the-smallest-balanced-index/
+
+//brute code(caused runtime error)
+
+class Solution {
+public:
+    int smallestBalancedIndex(vector<int>& nums) {
+        int bI=-1;
+        for(int i=1;i<nums.size()-1;++i)
+            {
+                long long sum=accumulate(nums.begin(),nums.begin()+i,0);
+                long long product=accumulate(nums.begin()+i+1,nums.end(),1LL,multiplies<long long>());
+                if(sum==product)
+                {
+                    bI=i;
+                    break;
+                }
+            }
+            return bI;
+    }
+};
+
+
+
