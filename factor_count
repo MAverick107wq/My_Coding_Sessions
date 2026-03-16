@@ -1,0 +1,43 @@
+//problem-find no.of factors of a number
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+    int ip,no_of_fac=1,sum=0,i;
+    cin>>ip;
+    //first we need to find the prime factorization of ip
+    //map<prime factor,frquency>
+    map<int,int> prime;
+    for( i=2;i*i<=ip;++i)
+    {
+        while(ip%i==0)
+        {
+            if((prime.find(i)!=prime.end()))
+                prime[i]++;
+            else
+                prime[i]=1;
+            ip/=i;
+        }
+        
+    }
+    if(ip>1)
+        {
+             if((prime.find(i)!=prime.end()))
+                prime[i]++;
+             else
+                prime[i]=1;
+        }
+    for(auto x:prime)
+    {
+        no_of_fac*=(x.second+1);
+
+        
+    }
+    cout<<no_of_fac<<endl;
+    
+    
+}
