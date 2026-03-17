@@ -1,0 +1,50 @@
+//problem-find sum and product of factors of i/p
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+    int ip,x,sum=1,nof=1,i;
+    long long pof=1;
+    cin>>x;
+    ip=x;
+    if(ip>=1)//sum of factors of 0->infinity
+    {
+
+    map<int,int> prime;
+    for( i=2;i*i<=ip;++i)
+    {
+        while(ip%i==0)
+        {
+            if((prime.find(i)!=prime.end()))
+                prime[i]++;
+            else
+                prime[i]=1;
+            ip/=i;
+        }
+        
+    }
+    if(ip>1)
+        {
+             if((prime.find(i)!=prime.end()))
+                prime[i]++;
+             else
+                prime[i]=1;
+        }
+
+    for(auto val:prime)
+    {
+        sum*=static_cast<int>((pow(val.first,val.second+1))/(val.first-1));
+
+        //prodcut of factors needs no.of factors hence
+        nof*=(val.second+1);
+    }
+    pof=static_cast<long long>(pow(x,nof/2));
+    
+    cout<<"sum of factors of "<<x<<"= "<<sum<<endl<<
+    "product of factors= "<<pof;
+    
+    }
+     
+}
