@@ -1,0 +1,80 @@
+//goal is to complete the task in O(1) auxiliary space 
+
+// Initailly i used 3 new vector<int> containers to solve this using 2 pointer approach{O(n) space complexity}-
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums)
+     {
+
+        vector<int> pos,neg,sqr;
+
+        for(auto &val:nums)
+        {
+            if(val>=0)
+                pos.push_back(val);
+            else
+                 neg.push_back(val);
+
+        }
+
+        //for(int i=0;nums[i]>=0;++i)
+          //  neg.push_back(nums[i]);
+        int i=neg.size()-1,j=0;
+        while(i>-1 && j<pos.size())
+        {
+            if(-neg[i]<pos[j])
+            {
+                sqr.push_back(neg[i]*neg[i--]);
+            }
+
+            else
+                sqr.push_back(pos[j]*pos[j++]);
+        }
+
+        while(i>-1)
+            sqr.push_back(neg[i]*neg[i--]);
+        while(j<pos.size())
+            sqr.push_back(pos[j]*pos[j++]);
+
+
+return sqr;
+
+    }
+};
+
+// here in the next approach, I didnt use vector<int> pos,neg and directly stored data in sqr
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums)
+     {
+
+        int i=nums.size()-1,j=0,n=nums.size()-1;
+        vector<int> sqr(n+1);
+
+        while(j<=i)
+        {
+            if(nums[j]*nums[j]<nums[i]*nums[i])
+            {
+                sqr[n--]=nums[i]*nums[i];
+                i--;
+            }
+            else
+            {
+                sqr[n--]=nums[j]*nums[j];
+                j++;
+            }
+        }
+
+
+
+return sqr;
+
+    }
+};
+
+
+
+
+
